@@ -18,3 +18,5 @@ const connect = async() => {
         console.log(error)
     }
 }
+
+connect()
