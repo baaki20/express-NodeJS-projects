@@ -1,6 +1,5 @@
 const express = require('express')
 const tasks = require('./routes/tasks')
-const mongoose = require('mongoose')
 const connectionDB = require('./db/connnection')
 const notFound = require('./middlewares/not-found')
 const errorHandler = require('./middlewares/error-handler')

@@ -1,22 +1,23 @@
 require('dotenv').config()
+const asyncHandler = require('express-async-handler')
 const express = require('express')
 const connectDB = require('./db/connectDB')
-const { getAllProducts } = require('./controllers/products')
+const products = require('./routes/products')
+const errorHandler = require('./errors/errorHandlerMiddleware')
+
 const app = express()
-
-app.get('api/v1/products', getAllProducts)
-
 const port = process.env.PORT || 3000
 
-const connect = async() => {
-    try {
+// middlewares
+app.use(express.json())
+
+app.use('/api/v1/products', products)
+app.use(errorHandler)
+
+const connect = asyncHandler(async() => {
         // connectDB
-        connectDB(process.env.MONGO_URI)
+        await connectDB(process.env.MONGO_URI)
         app.listen(port, console.log(`listening on port ${port}`))
-        
-    } catch (error) {
-        console.log(error)
-    }
-}
+})
 
 connect()
