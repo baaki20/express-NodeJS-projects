@@ -1,6 +1,7 @@
 const Product = require('../models/products')
+const asynchHandler = require('express-async-handler')
 
-const getAllProducts = async(req, res) => {
+const getAllProducts = asynchHandler(async(req, res) => {
     const {featured, company, name} = req.query
     const productsObject = {}
 
@@ -8,13 +9,13 @@ const getAllProducts = async(req, res) => {
         productsObject.featured = featured === 'true' ? true : false
     }
     if(company) {
-        productObject.company = company
+        productsObject.company = company
     }
     if(name) {
         productsObject.name = name
     }
     const products = await Product.find(productsObject)
     res.status(200).json({products, nHits: products.length})
-}
+})
 
 module.exports = {getAllProducts}
