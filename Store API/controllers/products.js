@@ -31,6 +31,7 @@ const getAllProducts = asynchHandler(async(req, res) => {
                 productsObject[field] = {[operator] : Number(value)}
             }
         });
+        console.log(productsObject)
     }
 
     let result = Product.find(productsObject)
