@@ -2,7 +2,6 @@ require('dotenv').config()
 const jsonProducts = require('./products.json')
 const connectDB = require('./db/connectDB')
 const Product = require('./models/products')
-// const asyncHandler = require('express-async-handler')
 
 const populate = async () => {
     try {

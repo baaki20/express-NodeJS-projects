@@ -1,7 +1,6 @@
 const Product = require('../models/products')
-const asynchHandler = require('express-async-handler')
 
-const getAllProducts = asynchHandler(async(req, res) => {
+const getAllProducts = async(req, res) => {
     const {featured, company, name, sort, fields, numericFilters} = req.query
     const productsObject = {}
 
@@ -22,7 +21,7 @@ const getAllProducts = asynchHandler(async(req, res) => {
             '<' : '$lt',
             '<=' : '$lte'
         }
-        const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+        const regEx = /\b(<|>|>=|=|<=)\b/g;
         let filter = numericFilters.replace(regEx, (match) => `-${mapOperators[match]}-`)
         const options = ['price', 'rating']
         filter = filter.split(',').forEach((item) => {
@@ -31,7 +30,6 @@ const getAllProducts = asynchHandler(async(req, res) => {
                 productsObject[field] = {[operator] : Number(value)}
             }
         });
-        console.log(productsObject)
     }
 
     let result = Product.find(productsObject)
@@ -54,6 +52,6 @@ const getAllProducts = asynchHandler(async(req, res) => {
     result = result.limit(limit).skip(skip)
     const products = await result
     res.status(200).json({products, nHits: products.length})
-})
+}
 
 module.exports = {getAllProducts}
