@@ -18,7 +18,7 @@ This is a RESTful API for an online store, built using **Node.js** and **Express
 
 - **Node.js**: JavaScript runtime
 - **Express.js**: Web framework for handling HTTP requests
-- **MongoDB**: Database for storing product information (assuming use of Mongoose in models)
+- **MongoDB**: Database for storing product information
 
 ## Installation
 
@@ -74,10 +74,10 @@ The API provides structured error responses with meaningful messages and appropr
 
 ## Example Requests
 
-1. **Get all featured Nike products sorted by price descending**:
+1. **Get all featured liddy products sorted by price descending**:
 
    ```http
-   GET /api/v1/products?featured=true&company=Nike&sort=-price
+   GET /api/v1/products?featured=true&company=liddy&sort=-price
    ```
 
 2. **Get products with a rating of 4 or higher, limited to 5 per page**:
