@@ -1,4 +1,4 @@
-const { CustomError } = require('../errors/custom-error')
+const { UnauthenticatedError } = require('../errors')
 const {StatusCodes} = require('http-status-codes')
 
 const jwt = require('jsonwebtoken')
@@ -7,7 +7,7 @@ const authorizationMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization
 
     if(!authHeader || !authHeader.startsWith('Bearer ')) {
-        throw new CustomError("No token present", StatusCodes.UNAUTHORIZED)
+        throw new UnauthenticatedError("No token present")
     }
 
     const token = authHeader.split(' ')[1]
@@ -17,7 +17,7 @@ const authorizationMiddleware = (req, res, next) => {
         req.user = {username, id}
         next()
     } catch (error) {
-        throw new CustomError("Not authorized to access this route", StatusCodes.UNAUTHORIZED)
+        throw new UnauthenticatedError("Not authorized to access this route")
     }
 }
 

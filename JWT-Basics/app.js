@@ -17,4 +17,8 @@ app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 3000
 
-app.listen(port, () => console.log(`Listening on port ${port}...`))
+try {
+    app.listen(port, () => console.log(`Listening on port ${port}...`))
+} catch (error) {
+    console.log(error)
+}

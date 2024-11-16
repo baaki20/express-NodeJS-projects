@@ -1,12 +1,12 @@
 const {StatusCodes} = require('http-status-codes')
-const { CustomError } = require('../errors/custom-error')
+const { BadRequestError } = require('../errors')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 const login = (req, res) => {
     const {username, password} = req.body
     if(!username || !password) {
-        throw new CustomError('Username or Password is required!', StatusCodes.BAD_REQUEST)
+        throw new BadRequestError('Username or Password is required!')
     }
     const id = new Date().getDate()
     const token = jwt.sign({username, id}, process.env.JWT_SECRET, {expiresIn:'30d'})
