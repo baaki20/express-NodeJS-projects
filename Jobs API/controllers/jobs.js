@@ -1,0 +1,3 @@
+const getAllJobs = (req, res) => {
+    
+}
