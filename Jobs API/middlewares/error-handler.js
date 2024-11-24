@@ -7,3 +7,5 @@ const errorHandlerMiddleware = (err, req, res) => {
     }
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: 'Something went wrong, try again'})
 }
+
+module.exports = errorHandlerMiddleware
