@@ -17,9 +17,9 @@ const JobSchema = new mongoose.Schema({
         default: 'pending'
     },
     createdBy: {
-        type: mongooose.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'User'
     }
-}, {timeStammps: true})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Job', JobSchema)
